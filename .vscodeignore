@@ -1,0 +1,12 @@
+node_modules/
+src/
+test/
+tsconfig.json
+*.vsix
+**/*.map
+.github/
+.editorconfig
+.gitignore
+CONTRIBUTING.md
+AGENTS.md
+CLAUDE.md

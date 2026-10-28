@@ -1,0 +1,93 @@
+{
+  "Entity": {
+    "prefix": "entity",
+    "body": ["Entity ${1:Name}", "    Field ${2:Title} Text(${3:200})"],
+    "description": "An entity with one text field."
+  },
+  "Export Entity": {
+    "prefix": "export",
+    "body": ["Export Entity ${1:Name}", "    Field ${2:Title} Text(${3:200})"],
+    "description": "An entity that other .bev files may import."
+  },
+  "Import": {
+    "prefix": "import",
+    "body": "Import ${1:Entity} From \"${2:file}.bev\"",
+    "description": "Use exported entities of another .bev file."
+  },
+  "Field": {
+    "prefix": "field",
+    "body": "Field ${1:Name} ${2|Text(100),Boolean,Int,Decimal,Money,Date,DateTime,Time,Email,Phone,Url|}",
+    "description": "A field with a primitive type."
+  },
+  "Optional Field": {
+    "prefix": "field?",
+    "body": "Field ${1:Name} ${2|Text(100),Boolean,Int,Decimal,Money,Date,DateTime,Time,Email,Phone,Url|}?",
+    "description": "A field that may be empty."
+  },
+  "Enum Field": {
+    "prefix": "enum",
+    "body": "Field ${1:Status} Enum(${2:Draft}, ${3:Published}, ${4:Archived}) = ${2:Draft}",
+    "description": "A field with a fixed set of values and a default."
+  },
+  "Rule": {
+    "prefix": "rule",
+    "body": "Rule ${1:Amount} ${2|>,>=,<,<=,=,!=|} ${3:0} \"${4:Amount must be positive}\"",
+    "description": "A validation rule: saves are refused when the condition is false."
+  },
+  "Relationship Field": {
+    "prefix": "rel",
+    "body": "Field ${1:Customer} -> ${2:Customer}${3:?}",
+    "description": "A reference to a record of another entity."
+  },
+  "Owner Field": {
+    "prefix": "owner",
+    "body": "Field ${1:Owner} -> Identity${2:?}",
+    "description": "A reference to a signed-in account. Requires a top-level Identity block."
+  },
+  "Identity": {
+    "prefix": "identity",
+    "body": ["Identity", "    Registration Enabled"],
+    "description": "Sign-in with email and password, with self-service registration."
+  },
+  "Role": {
+    "prefix": "role",
+    "body": "Role ${1:Agent}",
+    "description": "A role for 'By <Role>'. Requires Identity; assign it with 'bever identity role add'."
+  },
+  "Action": {
+    "prefix": "action",
+    "body": ["Action ${1|Crud,Create,Read,Update,Delete|} ${2:Entity}", "    By ${3|Authenticated,Anyone|}"],
+    "description": "An action and who may perform it."
+  },
+  "Owner Action": {
+    "prefix": "action-owner",
+    "body": ["Action ${1|Read,Update,Delete|} ${2:Entity}", "    By ${3:Owner}"],
+    "description": "An action only the account in an owner field may perform."
+  },
+  "Read Action": {
+    "prefix": "action-read",
+    "body": ["Action Read ${1:Entity}", "    By ${2|Authenticated,Anyone|}", "    OrderBy ${3:Name} ${4|Asc,Desc|}", "    SearchBy ${3:Name}"],
+    "description": "A read action with list order and picker search."
+  },
+  "Picker": {
+    "prefix": "action-pick",
+    "body": ["Action Pick ${1:Entity}", "    By ${2|Authenticated,Anyone|}", "    SearchBy ${3:Name}"],
+    "description": "Who may choose records of an entity in relationship pickers."
+  },
+  "Presentation": {
+    "prefix": "present",
+    "body": [
+      "Present",
+      "    Label \"${1:Task}\"",
+      "    PluralLabel \"${2:Tasks}\"",
+      "    RecordLabel ${3:Title}",
+      "",
+      "    Listing",
+      "        Fields ${3:Title}, ${4:Status}",
+      "",
+      "    Editing",
+      "        Mode ${5|Page,Modal,Inline,None|}"
+    ],
+    "description": "Labels, listing columns, and the editing experience of the generated app."
+  }
+}

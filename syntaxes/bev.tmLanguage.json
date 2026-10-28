@@ -1,0 +1,319 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Bever",
+  "scopeName": "source.bev",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#declarations"
+    },
+    {
+      "include": "#members"
+    },
+    {
+      "include": "#presentation"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.bev",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.bev",
+          "begin": "\"",
+          "end": "\""
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "match": "^(Import)\\s+([A-Za-z0-9,\\s]+?)\\s+(From)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.import.bev"
+            },
+            "2": {
+              "name": "entity.name.type.bev"
+            },
+            "3": {
+              "name": "keyword.control.import.bev"
+            }
+          }
+        },
+        {
+          "match": "^(?:(Export)\\s+)?(Entity)\\s+([A-Za-z][A-Za-z0-9]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.export.bev"
+            },
+            "2": {
+              "name": "keyword.declaration.entity.bev"
+            },
+            "3": {
+              "name": "entity.name.type.bev"
+            }
+          }
+        },
+        {
+          "match": "^(Action)\\s+((?:(?:Create|Read|Update|Delete|Crud|Pick)\\s*,?\\s*)+)\\s*([A-Za-z][A-Za-z0-9]*)(?:\\s+(As)\\s+([A-Za-z][A-Za-z0-9]*))?",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.action.bev"
+            },
+            "2": {
+              "name": "keyword.other.verb.bev"
+            },
+            "3": {
+              "name": "entity.name.type.bev"
+            },
+            "4": {
+              "name": "keyword.other.bev"
+            },
+            "5": {
+              "name": "entity.name.function.bev"
+            }
+          }
+        },
+        {
+          "name": "keyword.declaration.identity.bev",
+          "match": "^Identity\\b"
+        },
+        {
+          "match": "^(Role)\\s+([A-Za-z][A-Za-z0-9]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.role.bev"
+            },
+            "2": {
+              "name": "entity.name.type.role.bev"
+            }
+          }
+        }
+      ]
+    },
+    "members": {
+      "patterns": [
+        {
+          "match": "^\\s+(Field)\\s+([A-Za-z][A-Za-z0-9]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.field.bev"
+            },
+            "2": {
+              "name": "variable.other.member.bev"
+            }
+          }
+        },
+        {
+          "match": "^\\s+(Rule)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.other.rule.bev"
+            }
+          }
+        },
+        {
+          "match": "^\\s+(By)\\s+(Anyone|Authenticated)?",
+          "captures": {
+            "1": {
+              "name": "keyword.other.authorization.bev"
+            },
+            "2": {
+              "name": "constant.language.subject.bev"
+            }
+          }
+        },
+        {
+          "match": "^\\s+(OrderBy|SearchBy)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.other.behavior.bev"
+            }
+          }
+        },
+        {
+          "match": "\\b(OrderBy)\\b|\\b(Asc|Desc)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.other.behavior.bev"
+            },
+            "2": {
+              "name": "constant.language.direction.bev"
+            }
+          }
+        },
+        {
+          "match": "^\\s+(Registration)\\s+(Enabled)\\b|^\\s+(Summary)\\s+(Label)\\s+(Email)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.other.identity.bev"
+            },
+            "2": {
+              "name": "constant.language.bev"
+            },
+            "3": {
+              "name": "keyword.other.identity.bev"
+            },
+            "4": {
+              "name": "keyword.other.identity.bev"
+            },
+            "5": {
+              "name": "constant.language.bev"
+            }
+          }
+        },
+        {
+          "match": "(->)\\s*([A-Za-z][A-Za-z0-9]*)(\\?)?",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.relationship.bev"
+            },
+            "2": {
+              "name": "entity.name.type.bev"
+            },
+            "3": {
+              "name": "keyword.operator.nullable.bev"
+            }
+          }
+        },
+        {
+          "match": "\\b(OnDelete)\\s+(Restrict|Cascade|SetNull)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.other.relationship.bev"
+            },
+            "2": {
+              "name": "constant.language.delete-behavior.bev"
+            }
+          }
+        },
+        {
+          "match": "\\b(Pick)\\s+([A-Za-z][A-Za-z0-9]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.relationship.bev"
+            },
+            "2": {
+              "name": "entity.name.function.bev"
+            }
+          }
+        }
+      ]
+    },
+    "presentation": {
+      "patterns": [
+        {
+          "name": "keyword.other.presentation.bev",
+          "match": "^\\s+(Present|Label|PluralLabel|RecordLabel|Listing|Details|Creating|Editing|Actions|Fields|Input|Picker|Mode|Emphasis|Confirm|Place|Order|Hidden)\\b"
+        },
+        {
+          "name": "keyword.other.presentation.bev",
+          "match": "^\\s+(Create|Read|Update|Delete)\\s*$"
+        },
+        {
+          "name": "constant.language.presentation.bev",
+          "match": "\\b(Page|Modal|Inline|None|Dropdown|Combobox|Default|Primary|Destructive|Navigation|ListingToolbar|ListingRow|DetailsToolbar|true|false)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.primitive.bev",
+          "match": "\\b(Text|Boolean|Int|Decimal|Money|Date|DateTime|Time|Email|Phone|Url)\\b"
+        },
+        {
+          "begin": "\\b(Enum)\\s*(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "support.type.enum.bev"
+            },
+            "2": {
+              "name": "punctuation.definition.arguments.begin.bev"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.arguments.end.bev"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#numbers"
+            },
+            {
+              "name": "constant.other.enum-option.bev",
+              "match": "[A-Za-z][A-Za-z0-9]*"
+            }
+          ]
+        },
+        {
+          "name": "keyword.operator.nullable.bev",
+          "match": "\\?"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.bev",
+          "match": "\\b(True|False)\\b"
+        },
+        {
+          "name": "constant.language.rule.bev",
+          "match": "\\b(Null|Today|Now)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.bev",
+          "match": "-?\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.logical.bev",
+          "match": "\\b(And|Or|Not|In)\\b"
+        },
+        {
+          "name": "keyword.operator.comparison.bev",
+          "match": "!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.assignment.bev",
+          "match": "="
+        }
+      ]
+    }
+  }
+}

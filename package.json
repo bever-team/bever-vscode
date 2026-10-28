@@ -1,0 +1,112 @@
+{
+  "name": "bever-vscode",
+  "displayName": "Bever",
+  "description": "Syntax highlighting, snippets, and live error checking for Bever .bev files.",
+  "version": "0.1.0",
+  "publisher": "bever",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Ali Abdullah Yılmaz",
+    "email": "ali@aliyil.com"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#0F1E24",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:bev"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "bev",
+        "aliases": [
+          "Bever",
+          "bev"
+        ],
+        "extensions": [
+          ".bev"
+        ],
+        "icon": {
+          "light": "./images/bever.svg",
+          "dark": "./images/bever.svg"
+        },
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bev",
+        "scopeName": "source.bev",
+        "path": "./syntaxes/bev.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "bev",
+        "path": "./snippets/bev.json"
+      }
+    ],
+    "configuration": {
+      "title": "Bever",
+      "properties": {
+        "bever.check.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Check .bev files with the Bever CLI (`bever check`) and show errors in the editor."
+        },
+        "bever.check.command": {
+          "type": "string",
+          "default": "bever",
+          "description": "The Bever CLI command. Install it with `dotnet tool install --global Bever.Cli`."
+        },
+        "bever.check.arguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "check"
+          ],
+          "description": "Arguments passed before the folder of the checked file."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "test": "node --test test/*.test.cjs",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.92.0",
+    "typescript": "^5.5.3"
+  },
+  "homepage": "https://bever.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bever-team/bever-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bever-team/bever-vscode/issues"
+  },
+  "keywords": [
+    "bever",
+    "bev",
+    "business applications",
+    "dsl",
+    "low-code"
+  ]
+}
