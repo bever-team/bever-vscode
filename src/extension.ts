@@ -101,7 +101,7 @@ function runCheck(document: vscode.TextDocument, diagnostics: vscode.DiagnosticC
     diagnostics.set(document.uri, [
       new vscode.Diagnostic(
         new vscode.Range(0, 0, 0, 1),
-        `Could not run '${command}' to check this file (${error.message}). Install the Bever CLI with 'dotnet tool install --global Bever.Cli', or turn off the 'bever.check.enabled' setting.`,
+        `Could not run '${command}' to check this file (${error.message}). Install the Bever CLI with 'dotnet tool install --global --prerelease Bever.Cli', or turn off the 'bever.check.enabled' setting.`,
         vscode.DiagnosticSeverity.Information
       )
     ]);

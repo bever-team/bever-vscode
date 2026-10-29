@@ -2,6 +2,8 @@
 
 Language support for [Bever](https://bever.dev) `.bev` files.
 
+> **Bever is pre-alpha.** The language and APIs will change in breaking ways between releases, and there is no upgrade path yet. Do not use it for production data. See [Status](https://bever.dev/guide/what-is-bever#status).
+
 - **Highlighting** for entities, fields, types, relationships, actions, `By` rules, and `Present` blocks
 - **Errors as you type**, from `bever check`, with file, line, and column
 - **Snippets** for entities, fields, enums, relationships, actions, pickers, and presentation (`entity`, `field`, `enum`, `rel`, `owner`, `action`, `present`, ...)
@@ -12,7 +14,7 @@ Language support for [Bever](https://bever.dev) `.bev` files.
 Error checking runs the Bever CLI. Install it with:
 
 ```sh
-dotnet tool install --global Bever.Cli
+dotnet tool install --global --prerelease Bever.Cli
 ```
 
 Without the CLI, highlighting and snippets still work, and the extension tells you how to install it.

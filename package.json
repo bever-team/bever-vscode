@@ -68,7 +68,7 @@
         "bever.check.command": {
           "type": "string",
           "default": "bever",
-          "description": "The Bever CLI command. Install it with `dotnet tool install --global Bever.Cli`."
+          "description": "The Bever CLI command. Install it with `dotnet tool install --global --prerelease Bever.Cli`."
         },
         "bever.check.arguments": {
           "type": "array",
